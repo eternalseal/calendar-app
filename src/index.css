@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --reach-dialog: 1;
+  --reach-menubutton: 1;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .slide-down[data-reach-menu-list],
+  .slide-down[data-reach-menu-items] {
+    animation: slide-down 0.2s ease;
+  }
+}
+
+@layer components {
+  [data-reach-menu-item][data-selected] {
+    @apply active:bg-gray-100 active:text-gray-900  text-gray-700;
+  }
+  [data-reach-combobox-option][data-highlighted] {
+    @apply active:bg-gray-100 active:text-gray-900 text-gray-700;
+  }
+
+  .secondary__button {
+    @apply px-4 py-2 text-sm font-medium text-gray-800 bg-gray-200 border border-transparent rounded-md shadow-sm hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2;
+  }
+
+  .primary__button {
+    @apply px-4 py-2  text-sm font-medium text-white bg-violet-600 border border-transparent rounded-md shadow-sm hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2;
+  }
+
+  .input {
+    @apply mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-violet-500 focus:border-violet-500 sm:text-sm rounded-md;
+  }
+
+  .input__error {
+    @apply mt-1 block w-full pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md;
+  }
+}
