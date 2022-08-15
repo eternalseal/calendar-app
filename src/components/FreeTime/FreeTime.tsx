@@ -12,7 +12,7 @@ const FreeTime: React.FC<Props> = ({ startTime, endTime, day }) => {
   const endTimeString = endTime > 12 ? `${12 - endTime}pm` : `${endTime} am`;
   return (
     <li
-      className="relative flex mt-px sm:col-start-3 "
+      className="relative flex mt-px col-start-3 "
       style={{
         gridRow: `${Number(startTime) + 2} / span ${
           Number(endTime) - Number(startTime)

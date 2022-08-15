@@ -160,7 +160,7 @@ function App() {
                 ))}
               </div>
               {/*  Vertical lines  */}
-              <div className="hidden grid-cols-7 col-start-1 col-end-2 grid-rows-1 row-start-1 divide-x divide-gray-100 sm:grid sm:grid-cols-7">
+              <div className="col-start-1 col-end-2 grid-rows-1 row-start-1 divide-x divide-gray-100 grid grid-cols-7">
                 <div className="col-start-1 row-span-full" />
                 <div className="col-start-2 row-span-full" />
                 <div className="col-start-3 row-span-full" />
@@ -172,7 +172,7 @@ function App() {
               </div>
               {/* Events */}
               <ol
-                className="grid grid-cols-1 col-start-1 col-end-2 row-start-1 sm:grid-cols-7 sm:pr-8"
+                className="grid grid-cols-7 col-start-1 col-end-2 row-start-1 sm:grid-cols-7 sm:pr-8"
                 style={{
                   gridTemplateRows: '1.75rem repeat(24, minmax(0, 1fr)) auto',
                 }}
