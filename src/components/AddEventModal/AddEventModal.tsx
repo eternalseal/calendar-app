@@ -39,6 +39,7 @@ const timeSlots = [
 type Props = {
   closeModal: () => void;
   setValue: React.Dispatch<React.SetStateAction<DataFieldType>>;
+  availablePeriods: DataFieldType;
 };
 
 const defaultValue = {
@@ -47,11 +48,15 @@ const defaultValue = {
   endTime: timeSlots[1].value,
 };
 
-const AddEventModal: React.FC<Props> = ({ closeModal, setValue }) => {
+const AddEventModal: React.FC<Props> = ({
+  closeModal,
+  setValue,
+  availablePeriods,
+}) => {
   const { register, handleSubmit, formState, control, clearErrors } =
     useForm<DataType>({
       defaultValues: {
-        data: [defaultValue],
+        data: availablePeriods.length === 0 ? [defaultValue] : availablePeriods,
       },
       resolver: zodResolver(schema),
       mode: 'onChange',

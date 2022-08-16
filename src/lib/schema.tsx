@@ -9,7 +9,7 @@ export const schema = z.object({
           startTime: z.string(),
           endTime: z.string(),
         })
-        .refine((value) => value.startTime > value.endTime, {
+        .refine((value) => Number(value.startTime) < Number(value.endTime), {
           message: 'Start time must be before end time',
           path: ['startTime'],
         }),

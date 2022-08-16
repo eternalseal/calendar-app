@@ -41,13 +41,15 @@ const timeArray = [
 
 function App() {
   const [showEventModal, setShowEventModal] = React.useState(false);
-  const [event, setEvent] = React.useState<DataFieldType>([]);
+  const [availablePeriods, setAvailablePeriods] = React.useState<DataFieldType>(
+    [],
+  );
 
   const weekDates = React.useMemo(() => getWeekDates(new Date()), []);
 
   const openModal = () => setShowEventModal(true);
   const closeModal = () => setShowEventModal(false);
-
+  const printEvents = () => console.log(availablePeriods);
   return (
     <div className="flex flex-col h-full">
       <header className="relative z-40 flex items-center justify-between flex-none px-6 py-4 border-b border-gray-200">
@@ -64,7 +66,11 @@ function App() {
         </h1>
         <div className="flex items-center">
           <div className="hidden md:ml-4 md:flex md:items-center">
-            <button type="button" className="secondary__button">
+            <button
+              type="button"
+              className="secondary__button"
+              onClick={() => printEvents()}
+            >
               Print availability
             </button>
             <div className="w-px h-6 ml-6 bg-gray-300" />
@@ -177,7 +183,7 @@ function App() {
                   gridTemplateRows: '1.75rem repeat(24, minmax(0, 1fr)) auto',
                 }}
               >
-                {event.map((val) => (
+                {availablePeriods.map((val) => (
                   <FreeTime
                     startTime={Number(val.startTime)}
                     endTime={Number(val.endTime)}
@@ -190,7 +196,11 @@ function App() {
         </div>
       </div>
       <Modal showModal={showEventModal} setShowModal={setShowEventModal}>
-        <AddEventModal closeModal={closeModal} setValue={setEvent} />
+        <AddEventModal
+          availablePeriods={availablePeriods}
+          closeModal={closeModal}
+          setValue={setAvailablePeriods}
+        />
       </Modal>
     </div>
   );
