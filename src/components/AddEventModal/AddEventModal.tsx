@@ -14,13 +14,13 @@ const groupBy = <T, K extends keyof any>(arr: T[], key: (i: T) => K) =>
   }, {} as Record<K, T[]>);
 // 7 days of week array with label and value
 const weekDays = [
-  { label: 'Monday', value: '1' },
-  { label: 'Tuesday', value: '2' },
-  { label: 'Wednesday', value: '3' },
-  { label: 'Thursday', value: '4' },
-  { label: 'Friday', value: '5' },
-  { label: 'Saturday', value: '6' },
-  { label: 'Sunday', value: '7' },
+  { label: 'Sunday', value: '1' },
+  { label: 'Monday', value: '2' },
+  { label: 'Tuesday', value: '3' },
+  { label: 'Wednesday', value: '4' },
+  { label: 'Thursday', value: '5' },
+  { label: 'Friday', value: '6' },
+  { label: 'Saturday', value: '7' },
 ] as const;
 
 // 9 Am to 5 pm array with label and value
@@ -99,9 +99,7 @@ const AddEventModal: React.FC<Props> = ({
               >
                 <select
                   className="input"
-                  {...register(`data.${index}.day` as const, {
-                    onChange: () => {},
-                  })}
+                  {...register(`data.${index}.day` as const, {})}
                 >
                   {weekDays.map((day) => (
                     <option key={day.value} value={day.value}>
@@ -128,7 +126,11 @@ const AddEventModal: React.FC<Props> = ({
               >
                 <select
                   className="input"
-                  {...register(`data.${index}.startTime` as const, {})}
+                  {...register(`data.${index}.startTime` as const, {
+                    onChange: () => {
+                      clearErrors();
+                    },
+                  })}
                 >
                   {timeSlots.map((time) => (
                     <option key={time.value} value={time.value}>
@@ -155,7 +157,11 @@ const AddEventModal: React.FC<Props> = ({
               >
                 <select
                   className="input"
-                  {...register(`data.${index}.endTime` as const)}
+                  {...register(`data.${index}.endTime` as const, {
+                    onChange: () => {
+                      clearErrors();
+                    },
+                  })}
                 >
                   {timeSlots.map((time) => (
                     <option key={time.value} value={time.value}>

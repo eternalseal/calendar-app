@@ -26,8 +26,8 @@ const DayLabel: React.FC<Props> = ({ short = false, date }) => {
     );
   else
     return (
-      <div className="flex items-center justify-center py-3">
-        <span>
+      <div className="flex items-center justify-center py-3 ">
+        <span className="flex justify-center items-center">
           {names[date.getDay()]}{' '}
           <span
             className={` ${

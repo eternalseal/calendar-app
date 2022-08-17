@@ -13,15 +13,6 @@ import { DataFieldType } from './lib/schema';
 
 // 24hr time array
 const timeArray = [
-  '12AM',
-  '1AM',
-  '2AM',
-  '3AM',
-  '4AM',
-  '5AM',
-  '6AM',
-  '7AM',
-  '8AM',
   '9AM',
   '10AM',
   '11AM',
@@ -31,12 +22,6 @@ const timeArray = [
   '3PM',
   '4PM',
   '5PM',
-  '6PM',
-  '7PM',
-  '8PM',
-  '9PM',
-  '10PM',
-  '11PM',
 ] as const;
 
 function App() {
@@ -131,7 +116,7 @@ function App() {
           </Menu>
         </div>
       </header>
-      <div className="flex flex-col flex-auto overflow-auto bg-white">
+      <div className="flex flex-col flex-auto overflow-auto bg-whitspane">
         <div
           style={{ width: '165%' }}
           className="flex flex-col flex-none max-w-full sm:max-w-none md:max-w-full"
@@ -139,14 +124,14 @@ function App() {
           <div className="sticky top-0 z-30 flex-none bg-white shadow ring-1 ring-black ring-opacity-5 sm:pr-8">
             <div className="grid grid-cols-7 text-sm leading-6 text-gray-500 sm:hidden">
               {weekDates.map((date) => (
-                <DayLabel date={date} short={true} />
+                <DayLabel date={date} short={true} key={date.toISOString()} />
               ))}
             </div>
 
             <div className="hidden grid-cols-7 -mr-px text-sm leading-6 text-gray-500 border-r border-gray-100 divide-x divide-gray-100 sm:grid">
               <div className="col-end-1 w-14" />
               {weekDates.map((date) => (
-                <DayLabel date={date} />
+                <DayLabel date={date} key={date.toISOString()} />
               ))}
             </div>
           </div>
@@ -157,12 +142,12 @@ function App() {
               <div
                 className="grid col-start-1 col-end-2 row-start-1 divide-y divide-gray-100"
                 style={{
-                  gridTemplateRows: 'repeat(24, minmax(3.5rem, 1fr))',
+                  gridTemplateRows: 'repeat(9, minmax(7.5rem, 1fr))',
                 }}
               >
                 <div className="row-end-1 h-7" />
-                {timeArray.map((time) => (
-                  <TimeLabel>{time}</TimeLabel>
+                {timeArray.map((time, idx) => (
+                  <TimeLabel key={idx}>{time}</TimeLabel>
                 ))}
               </div>
               {/*  Vertical lines  */}
@@ -180,7 +165,7 @@ function App() {
               <ol
                 className="grid grid-cols-7 col-start-1 col-end-2 row-start-1 sm:grid-cols-7 sm:pr-8"
                 style={{
-                  gridTemplateRows: '1.75rem repeat(24, minmax(0, 1fr)) auto',
+                  gridTemplateRows: '1.75rem repeat(9, minmax(0, 1fr)) auto',
                 }}
               >
                 {availablePeriods.map((val) => (
@@ -188,6 +173,7 @@ function App() {
                     startTime={Number(val.startTime)}
                     endTime={Number(val.endTime)}
                     day={Number(val.day)}
+                    key={`${val.startTime}-${val.endTime}-${val.day}`}
                   />
                 ))}
               </ol>

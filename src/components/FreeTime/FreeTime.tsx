@@ -8,13 +8,14 @@ type Props = {
 
 const FreeTime: React.FC<Props> = ({ startTime, endTime, day }) => {
   const startTimeString =
-    startTime > 12 ? `${12 - startTime}pm` : `${startTime} am`;
-  const endTimeString = endTime > 12 ? `${12 - endTime}pm` : `${endTime} am`;
+    startTime > 12 ? `${Math.abs(12 - startTime)}pm` : `${startTime} am`;
+  const endTimeString =
+    endTime > 12 ? `${Math.abs(12 - endTime)}pm` : `${endTime} am`;
   return (
     <li
       className="relative flex mt-px col-start-3 "
       style={{
-        gridRow: `${Number(startTime) + 2} / span ${
+        gridRow: `${Number(startTime) + 2 - 9} / span ${
           Number(endTime) - Number(startTime)
         }`,
         gridColumn: `${day} / span 1`,
