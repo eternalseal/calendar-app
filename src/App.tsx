@@ -69,7 +69,7 @@ function App() {
             <button
               type="button"
               className="secondary__button"
-              onClick={() => printEvents()}
+              onClick={printEvents}
             >
               Print availability
             </button>
@@ -122,7 +122,7 @@ function App() {
                   role="menuitem"
                   tabIndex={-1}
                   id="menu-0-item-1"
-                  onSelect={() => {}}
+                  onSelect={printEvents}
                 >
                   Print availability
                 </MenuItem>
